@@ -1,0 +1,38 @@
+{
+  "app": {
+    "title": "小红书创作助手",
+    "host": "127.0.0.1",
+    "port": 8000,
+    "debug": true
+  },
+  "deepseek": {
+    "api_key": "${DEEPSEEK_API_KEY}",
+    "model": "deepseek-chat",
+    "temperature": 0.7,
+    "max_tokens": 2000
+  },
+  "doubao": {
+    "api_key": "${DOUBAO_API_KEY}",
+    "model": "doubao-seedream-4-5-251128",
+    "endpoint": "https://ark.cn-beijing.volces.com/api/v3/images/generations"
+  },
+  "paths": {
+    "data_dir": "data",
+    "output_dir": "output",
+    "assets_dir": "assets",
+    "topics_csv": "data/topics.csv",
+    "personal_snippets": "data/personal_snippets.txt",
+    "prompt_template": "data/templates/prompt_template.txt",
+    "drafts_dir": "output/drafts",
+    "covers_dir": "output/covers"
+  },
+  "cover": {
+    "width": 1080,
+    "height": 1440,
+    "default_font": "assets/fonts/AlibabaPuHuiTi-3-45-Light.ttf",
+    "default_background": "assets/backgrounds/bg_01.jpg",
+    "font_size": 48,
+    "text_color": "white",
+    "stroke_color": "black"
+  }
+}

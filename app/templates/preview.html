@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记预览 - 小红书创作助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cover-preview {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .note-content {
+            color: #333;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-size: 15px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: #fff;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+        .btn-secondary:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>🖼️ 封面预览</h2>
+            <img src="{{ cover_url }}" alt="封面图" class="cover-preview">
+        </div>
+
+        <div class="card">
+            <h2>📝 笔记文案</h2>
+            <div class="note-content" id="note-content">{{ note_content }}</div>
+            <div class="buttons">
+                <button class="btn" onclick="copyContent(this)">📋 复制文案</button>
+                <a href="/" class="btn btn-secondary">↩️ 返回列表</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyContent(btn) {
+            const content = document.getElementById('note-content').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = '✅ 已复制！';
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                alert('复制失败，请手动选择复制');
+            });
+        }
+    </script>
+</body>
+</html>
